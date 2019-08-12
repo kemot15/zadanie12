@@ -6,8 +6,10 @@ public class Person {
     private int age;
     private int pesel;
 
+    public Person() {
+    }
 
-    public Person(String firstName, String lastName, int age, int pesel)  {
+    public Person(String firstName, String lastName, int age, int pesel) {
         new NameUndefinedException(firstName, lastName);
         new IncorrectAgeException(age);
         this.firstName = firstName;
@@ -20,8 +22,9 @@ public class Person {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        new NameUndefinedException(firstName, "   ");
+    public void setFirstName(String firstName) throws NameUndefinedException {
+        if (firstName == null || firstName.length()<=2)
+        throw new NameUndefinedException("imienia");
         this.firstName = firstName;
     }
 
@@ -29,17 +32,19 @@ public class Person {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        new NameUndefinedException("   ", lastName);
+    public void setLastName(String lastName) throws NameUndefinedException {
+        if (lastName == null || lastName.length()<=2)
+            throw new NameUndefinedException("nazwiska");
         this.lastName = lastName;
     }
 
     public int getAge() {
-        new IncorrectAgeException(age);
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(int age) throws IncorrectAgeException {
+        if (age <= 1)
+            throw new IncorrectAgeException(age);
         this.age = age;
     }
 

@@ -1,7 +1,10 @@
 package Zad1;
 
 
-public class NameUndefinedException extends RuntimeException{
+public class NameUndefinedException extends Exception{
+    public NameUndefinedException(String name){ //(String firstName, String lastName) {
+        super("Blad podczas podawania " + name);//
+    }
     public NameUndefinedException(String firstName, String lastName) {
         if (firstName == null) {
             throw new NullPointerException("Imie nie moze byc null");
@@ -13,5 +16,4 @@ public class NameUndefinedException extends RuntimeException{
             throw new IllegalArgumentException("Nazwisko musi posiadac wiecej niz 2 znaki");
         }
     }
-
 }
