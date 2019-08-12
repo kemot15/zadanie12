@@ -7,9 +7,9 @@ public class Person {
     private int pesel;
 
 
-    public Person(String firstName, String lastName, int age, int pesel) throws NameException, NumberException, NullNameException {
-        NameUndefinedException(firstName, lastName);
-        IncorrectAgeException(age);
+    public Person(String firstName, String lastName, int age, int pesel)  {
+        new NameUndefinedException(firstName, lastName);
+        new IncorrectAgeException(age);
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -21,6 +21,7 @@ public class Person {
     }
 
     public void setFirstName(String firstName) {
+        new NameUndefinedException(firstName, "   ");
         this.firstName = firstName;
     }
 
@@ -29,10 +30,12 @@ public class Person {
     }
 
     public void setLastName(String lastName) {
+        new NameUndefinedException("   ", lastName);
         this.lastName = lastName;
     }
 
     public int getAge() {
+        new IncorrectAgeException(age);
         return age;
     }
 
@@ -56,27 +59,5 @@ public class Person {
                 ", age=" + age +
                 ", pesel=" + pesel +
                 '}';
-    }
-
-//    private void NameUndefinedException (String firstName, String lastName){
-//        if (firstName == null || lastName == null){
-//            throw new NullPointerException("Imie albo nazwisko jest puste");
-//        }else if (firstName.length()<=2 || lastName.length()<=2){
-//            throw new IllegalArgumentException("Podane imie lub nazwisko jest za krotkie");
-//        }
-//    }
-
-    private void NameUndefinedException (String firstName, String lastName) throws NameException, NullNameException{
-        if (firstName == null || lastName == null){
-            throw new NullNameException();
-        }else if (firstName.length()<=2 || lastName.length()<=2){
-            throw new NameException();
-        }
-    }
-
-    private void IncorrectAgeException (int age) throws NumberException {
-        if (age<1)
-            //throw new IllegalArgumentException("Podany wiek jest nie prawidlowy");
-            throw new NumberException();
     }
 }
